@@ -14,5 +14,5 @@ variable "env" {
 
 variable "hub_vpc_self_link" {
   type        = string
-  description = "Self link of the hub VPC for peering"
+  description = "projects/gcpai-iac-dev/global/networks/hub-vpc"
 }
