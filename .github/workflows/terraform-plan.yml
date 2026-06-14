@@ -33,8 +33,7 @@ jobs:
 
       - name: Terraform Plan
         working-directory: environments/${{ matrix.env }}
-        run: terraform plan -no-color 2>&1 | tee plan.txt
-
+        run: terraform plan -no-color -var-file="terraform.tfvars" 2>&1 | tee plan.txt
       - name: Post Plan as PR Comment
         uses: actions/github-script@v7
         with:
