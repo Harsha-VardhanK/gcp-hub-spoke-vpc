@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         env: [hub, dev, prod]
+      fail-fast: false
 
     permissions:
       contents: read
@@ -32,4 +33,4 @@ jobs:
 
       - name: Terraform Apply
         working-directory: environments/${{ matrix.env }}
-        run: terraform apply -auto-approve -var-file="terraform.tfvars"
+        run: terraform apply -auto-approve -lock-timeout=5m -var-file="terraform.tfvars"
