@@ -74,3 +74,19 @@ resource "google_compute_firewall" "spoke_allow_from_hub" {
 
   source_ranges = ["10.0.0.0/24"]
 }
+
+
+resource "google_compute_firewall" "spoke_allow_iap_ssh" {
+  name      = "${var.env}-allow-iap-ssh"
+  project   = var.project_id
+  network   = google_compute_network.spoke.name
+  direction = "INGRESS"
+  priority  = 800
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["35.235.240.0/20"]
+}
